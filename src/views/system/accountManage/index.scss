@@ -1,0 +1,37 @@
+.search-card {
+  padding-bottom: 0;
+}
+
+.search-form .el-input {
+  --el-input-width: 220px;
+}
+
+.search-form .el-select {
+  --el-select-width: 220px;
+}
+
+.search-form .el-form-item {
+  margin-right: 24px;
+}
+
+.btn-icon {
+  font-size: 14px;
+}
+
+.account-manage {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	.table-container {
+		flex: 1;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		.table-content {
+			flex: 1;
+		}
+		.table-pagination {
+			justify-content: right;
+		}
+	}
+}

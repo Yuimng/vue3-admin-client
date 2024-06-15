@@ -1,0 +1,6 @@
+.el-main {
+  box-sizing: border-box;
+  padding: 10px 12px;
+  overflow-x: hidden; // 消除横移动画出现x轴滚动条
+  background-color: var(--el-bg-color-page);
+}

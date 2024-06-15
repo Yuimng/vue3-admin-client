@@ -1,0 +1,65 @@
+.gather-card{
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 8px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .card-info {
+    .card-title {
+      font-size: 14px;
+    }
+    .card-text {
+      font-size: 32px;
+      margin: 0;
+      margin-top: 10px;
+    }
+  }
+  .card-icon {
+    i {
+      font-size: 40px;
+      color: rgba(30, 32, 37, .18)
+    }
+  }
+}
+
+.bg-1 {
+  background: linear-gradient(rgba(43, 90, 237, 0.8) 0%, rgb(43, 90, 237) 100%);
+}
+
+.bg-2 {
+  background: linear-gradient(rgba(255, 96, 8, 0.12) 0%, rgba(255, 96, 8, 0.24) 100%);
+}
+
+.bg-3 {
+  background: linear-gradient(rgba(37, 223, 6, 0.12) 0%, rgba(37, 223, 6, 0.24) 100%);
+}
+
+.bg-4 {
+  background: linear-gradient(rgba(0, 201, 245, 0.12) 0%, rgba(0, 201, 245, 0.24) 100%);
+}
+
+.bg-5 {
+  background: linear-gradient(rgba(77, 62, 250, 0.12) 0%, rgba(77, 62, 250, 0.24) 100%);
+}
+
+.bg-6 {
+  background: linear-gradient(rgba(255, 53, 162, 0.12) 0%, rgba(255, 53, 162, 0.24) 100%);
+}
+
+.chart-card {
+  box-sizing: border-box;
+  width: 100%;
+  height: 360px;
+  border-radius: 8px;
+  padding: 24px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  .chart-title {
+    font-size: 20px;
+    font-weight: 600;
+  }
+}

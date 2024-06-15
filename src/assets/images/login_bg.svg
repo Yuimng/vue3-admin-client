@@ -1,0 +1,19 @@
+<svg width="1400" height="800" xmlns="http://www.w3.org/2000/svg" baseProfile="full" version="1.1">
+ <!-- 三角形 -->
+
+ <!--  <circle cx="1200" cy="600" r="30" stroke="rgb(241, 243, 244)" fill="rgb(241, 243, 244)">-->
+ <!--    <animateMotion path="M 0 0 L -20 40 Z" dur="9s" repeatCount="indefinite"/>-->
+ <!--  </circle>-->
+ <g>
+  <title>Layer 1</title>
+  <rect id="svg_1" fill="rgb(129, 201, 149)" stroke="rgb(129, 201, 149)" height="150" width="150" ry="40" rx="40" y="554.28571" x="1261.42863" transform="rotate(-47 1336.43 629.286)"/>
+  <path id="svg_2" fill="#ffc2a4" d="m1173.80954,148.57142a150,150 0 1 1 300,0q0,20 -20,20l-130,0l-130,0q-20,0 -20,-20" stroke="null"/>
+  <circle id="svg_3" fill="#85FFBD" stroke="#85FFBD" r="180" cy="159.19047" cx="164.61905"/>
+  <path id="svg_4" fill="#ffe427" d="m225.71428,667.42857l105,0q5,-2 0,-10l-47,-87q-3,-3 -6,0l-52,87q-5,8 0,10" transform="rotate(-20 278.214 618.179)"/>
+  <path transform="rotate(-34 141.524 706.191)" id="svg_5" fill="#5fad00" d="m101.52383,666.19048a40,40 0 1 1 80,0l0,80a40,40 0 1 1 -80,0l0,-80z"/>
+  <rect fill="#68e1fd" stroke="rgb(129, 201, 149)" x="806" y="641" width="1" height="1" id="svg_8"/>
+  <path fill="#68e1fd" stroke="null" d="m477.605,297.82858l0.71429,-0.745l0.71429,0.745l-0.71429,0.745l-0.71429,-0.745z" id="svg_14"/>
+  <path fill="#68e1fd" stroke="null" d="m611.21926,347.57858l1.42858,-0.745l1.42858,0.745l-1.42858,0.745l-1.42858,-0.745z" id="svg_15"/>
+  <rect fill="#68e1fd" stroke="null" x="70" y="427.14285" width="117.14286" height="117.14286" id="svg_17" rx="10" transform="rotate(-79 128.571 485.714)"/>
+ </g>
+</svg>

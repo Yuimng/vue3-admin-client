@@ -1,7 +1,7 @@
 .login-container {
   height: 100%;
   background: #eeeeee;
-  background-image: url("@/assets/images/login_bg.svg");
+  background-image: url('@/assets/images/login_bg.svg');
   background-size: 100% 100%;
   background-size: cover;
   .login-box {
@@ -47,7 +47,7 @@
       .login-btns {
         display: flex;
         justify-content: space-between;
-        .login-btn{
+        .login-btn {
           width: 48%;
         }
       }

@@ -8,7 +8,8 @@
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint --ext .js,.ts,.vue ./src",
-    "lint:fix": "eslint --fix --ext .js,.ts,.vue ./src"
+    "lint:fix": "eslint --fix --ext .js,.ts,.vue ./src",
+    "lint:prettier": "prettier --write \"src/**/*.{js,ts,tsx,css,less,scss,vue,html}\""
   },
   "dependencies": {
     "@vueuse/core": "^10.9.0",

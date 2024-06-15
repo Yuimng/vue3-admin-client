@@ -22,7 +22,7 @@
   height: 0;
   overflow: hidden;
   clear: both;
-  content: "";
+  content: '';
 }
 
 /* 文字单行省略号 */
@@ -61,7 +61,6 @@
   transition: all 0.2s;
   transform: translateX(30px);
 }
-
 
 ::-webkit-scrollbar {
   width: 6px;

@@ -27,3 +27,7 @@ export const getUserList = (data: object) => {
 export const deleteUser = (id: number) => {
   return http.post('/user/delete', { id })
 }
+
+export const addUser = (data: object) => {
+  return http.post('/user/add', { ...data })
+}

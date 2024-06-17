@@ -13,15 +13,24 @@ export interface User {
   roleName: string
 }
 
-export interface ResultTable {
+export interface Role {
+  id: number
+  role: string
+  roleName: string
+  isSuper: number
+  remark: string
+  createdAt: string
+}
+
+export interface ResultTable<T = any> {
   /** 总条目数 */
   count: number
   /** 列表数据 */
-  rows: User[]
+  rows: T[]
 }
 
 export const getUserList = (data: object) => {
-  return http.post<ResultTable>('/user/list', { ...data })
+  return http.post<ResultTable<User>>('/user/list', { ...data })
 }
 
 export const deleteUser = (id: number) => {
@@ -34,4 +43,12 @@ export const addUser = (data: object) => {
 
 export const editUser = (data: object) => {
   return http.post('/user/update', { ...data })
+}
+
+export const getRoleList = (data: object) => {
+  return http.post<ResultTable<Role>>('/role/list', { ...data })
+}
+
+export const deleteRole = (id: number) => {
+  return http.post('/role/delete', { id })
 }

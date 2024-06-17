@@ -39,7 +39,7 @@ const logout = () => {
     cancelButtonText: '取消',
     type: 'warning'
   }).then(() => {
-    userStore.setToken('')
+    userStore.setTokenWithExpires('', 0)
     router.replace(LOGIN_URL)
     ElMessage.success('退出登录成功！')
   })

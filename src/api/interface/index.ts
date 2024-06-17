@@ -20,6 +20,7 @@ export namespace Login {
     id: number
     username: string
     token: string
+    expires: number
   }
   export interface Userinfo {
     id: number

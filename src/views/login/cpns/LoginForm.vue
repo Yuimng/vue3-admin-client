@@ -65,7 +65,7 @@ const loginAction = () => {
       // 登录成功后 保存用户数据 跳转主页
       if (res.code == 200) {
         // 设置用户信息 包括token
-        userStore.setToken(res.data.token)
+        userStore.setTokenWithExpires(res.data.token, res.data.expires)
         // 根据token获取菜单列表 成功则加载路由
         const flag = await authStore.getAuthMenuList()
         if (flag) {

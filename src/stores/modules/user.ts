@@ -7,6 +7,7 @@ export const useUserStore = defineStore({
   id: 'ym-user',
   state: (): UserState => ({
     token: '',
+    expires: 0,
     userInfo: {
       id: 0,
       name: '',
@@ -24,8 +25,9 @@ export const useUserStore = defineStore({
   getters: {},
   actions: {
     // Set Token
-    setToken(token: string) {
+    setTokenWithExpires(token: string, expires: number) {
       this.token = token
+      this.expires = expires
     },
     // Set setUserInfo
     async getUserInfo(userId: number) {

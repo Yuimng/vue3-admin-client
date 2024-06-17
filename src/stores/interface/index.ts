@@ -7,6 +7,7 @@ export interface GlobalState {
 /* UserState */
 export interface UserState {
   token: string
+  expires: number
   userInfo: {
     id: number
     name: string

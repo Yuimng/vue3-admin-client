@@ -31,3 +31,7 @@ export const deleteUser = (id: number) => {
 export const addUser = (data: object) => {
   return http.post('/user/add', { ...data })
 }
+
+export const editUser = (data: object) => {
+  return http.post('/user/update', { ...data })
+}

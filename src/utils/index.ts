@@ -1,10 +1,12 @@
+import { Menu } from '@/typings'
+
 /**
  * @description 使用递归扁平化菜单，方便添加动态路由
  * @param {Array} menuList 菜单列表
  * @returns {Array}
  */
-export function getFlatMenuList(menuList: Menu.MenuOptions[]): Menu.MenuOptions[] {
-  let newMenuList: Menu.MenuOptions[] = JSON.parse(JSON.stringify(menuList))
+export function getFlatMenuList(menuList: Menu[]): Menu[] {
+  let newMenuList: Menu[] = JSON.parse(JSON.stringify(menuList))
   return newMenuList.flatMap((item) => [
     item,
     ...(item.children ? getFlatMenuList(item.children) : [])
@@ -12,15 +14,15 @@ export function getFlatMenuList(menuList: Menu.MenuOptions[]): Menu.MenuOptions[
 }
 
 /**
- * @description 使用递归过滤出需要渲染在左侧菜单的列表 (需剔除 isHide == true 的菜单)
+ * @description 使用递归过滤出需要渲染在左侧菜单的列表 (需剔除 isEnable == false 的菜单)
  * @param {Array} menuList 菜单列表
  * @returns {Array}
  * */
-export function getShowMenuList(menuList: Menu.MenuOptions[]) {
-  let newMenuList: Menu.MenuOptions[] = JSON.parse(JSON.stringify(menuList))
+export function getShowMenuList(menuList: Menu[]) {
+  let newMenuList: Menu[] = JSON.parse(JSON.stringify(menuList))
   return newMenuList.filter((item) => {
     item.children?.length && (item.children = getShowMenuList(item.children))
-    return !item.meta?.isHide
+    return item.meta.isEnable
   })
 }
 
@@ -32,7 +34,7 @@ export function getShowMenuList(menuList: Menu.MenuOptions[]) {
  * @returns {Object}
  */
 export function getAllBreadcrumbList(
-  menuList: Menu.MenuOptions[],
+  menuList: Menu[],
   parent = [],
   result: { [key: string]: any } = {}
 ) {

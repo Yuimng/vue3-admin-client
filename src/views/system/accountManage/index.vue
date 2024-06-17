@@ -67,7 +67,8 @@
 import UserDialog from './cpns/userDialog.vue'
 import { onMounted, ref, reactive } from 'vue'
 import { ElMessage, FormInstance } from 'element-plus'
-import { User, deleteUser, getUserList } from '@/api/modules/system'
+import { deleteUser, getUserList } from '@/api/modules/system'
+import { User } from '@/typings'
 
 onMounted(() => {
   onSearch()

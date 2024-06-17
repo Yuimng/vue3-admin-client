@@ -5,7 +5,7 @@
         <el-form-item label="角色：">
           <el-input v-model="searchForm.role" placeholder="输入角色" clearable />
         </el-form-item>
-        <el-form-item label="超级管理员" prop="isSuper" required>
+        <el-form-item label="超级管理员" prop="isSuper">
           <el-select v-model="searchForm.isSuper">
             <el-option
               v-for="item in superOptions"
@@ -72,7 +72,8 @@
 <script setup lang="ts">
 import { onMounted, ref, reactive } from 'vue'
 import { ElMessage, FormInstance } from 'element-plus'
-import { Role, deleteRole, getRoleList } from '@/api/modules/system'
+import { deleteRole, getRoleList } from '@/api/modules/system'
+import { Role } from '@/typings'
 
 onMounted(() => {
   onSearch()

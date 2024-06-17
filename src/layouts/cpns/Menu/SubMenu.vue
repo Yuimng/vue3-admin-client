@@ -17,13 +17,15 @@
 </template>
 
 <script setup lang="ts">
+import { Menu } from '@/typings'
 import { useRouter } from 'vue-router'
 
-defineProps<{ menuList: Menu.MenuOptions[] }>()
+defineProps<{ menuList: Menu[] }>()
 
 const router = useRouter()
-const handleClickMenu = (subItem: Menu.MenuOptions) => {
-  if (subItem.meta.isLink) return window.open(subItem.meta.isLink, '_blank')
+const handleClickMenu = (subItem: Menu) => {
+  // 是链接时 path为https://
+  if (subItem.meta.isLink) return window.open(subItem.path, '_blank')
   router.push(subItem.path)
 }
 </script>

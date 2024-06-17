@@ -17,11 +17,8 @@ export const initDynamicRouter = async () => {
       if (item.component && typeof item.component == 'string') {
         item.component = modules['/src/views' + item.component + '.vue']
       }
-      if (item.meta.isFull) {
-        router.addRoute(item as unknown as RouteRecordRaw)
-      } else {
-        router.addRoute('layout', item as unknown as RouteRecordRaw)
-      }
+      // 添加路由
+      router.addRoute('layout', item as unknown as RouteRecordRaw)
     })
   } catch (error) {
     return Promise.reject(error)

@@ -1,155 +1,148 @@
 <template>
-  <div class="table">
-    <div class="card search-box">
-      <el-form ref="searchFormRef" :inline="true" :model="searchForm">
-        <el-row :gutter="20">
-          <el-col :xs="24" :md="12" :lg="8">
-            <el-form-item label="菜单名称：" prop="metaName" style="width: 100%">
-              <el-input v-model="searchForm.metaName" placeholder="请输入" clearable />
-            </el-form-item>
-          </el-col>
-          <el-col :xs="24" :md="12" :lg="8">
-            <el-form-item label="菜单name：" prop="name" style="width: 100%">
-              <el-input v-model="searchForm.name" placeholder="请输入" clearable />
-            </el-form-item>
-          </el-col>
-          <el-col :xs="24" :md="12" :lg="8">
-            <el-form-item label="菜单路径：" prop="path" style="width: 100%">
-              <el-input v-model="searchForm.path" placeholder="请输入" clearable />
-            </el-form-item>
-          </el-col>
-          <el-col :xs="24" :md="12" :lg="24">
-            <div style="display: flex; align-items: center; justify-content: right">
-              <el-button type="primary" @click="onSubmit">
-                <i class="iconfont icon-sousuo"></i>搜索
-              </el-button>
-              <el-button @click="resetForm(searchFormRef)">
-                <i class="iconfont icon-shanchu"></i>重置
-              </el-button>
-            </div>
-          </el-col>
-        </el-row>
+  <div class="menu-manage">
+    <div class="card search-container mb10">
+      <el-form ref="searchFormRef" :inline="true" :model="searchForm" class="search-form">
+        <el-form-item label="菜单名称：">
+          <el-input v-model="searchForm.title" placeholder="输入菜单名称" clearable />
+        </el-form-item>
+        <el-form-item label="是否启用" prop="isEnable">
+          <el-select v-model="searchForm.isEnable">
+            <el-option
+              v-for="item in enableOptions"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="onSearch">
+            <i class="btn-icon mr4 iconfont icon-sousuo" /><span>搜索</span>
+          </el-button>
+        </el-form-item>
       </el-form>
     </div>
-    <div class="card table-box">
-      <el-button type="primary" class="table-button">
-        <i class="iconfont icon-quanjia"></i>
-        新增菜单
-      </el-button>
+    <div class="card table-container">
+      <div class="table-btns mb18">
+        <el-button type="primary" class="table-button" @click="handleNew">
+          <i class="btn-icon mr4 iconfont icon-quanjia" /><span>新增菜单</span>
+        </el-button>
+      </div>
       <el-table
-        class="table"
-        :data="authMenuList"
-        height="'100%'"
-        style="width: 100%; margin-bottom: 20px"
-        row-key="name"
-        border
+        class="table-content"
+        :data="tableData"
+        row-key="id"
+        default-expand-all
+        style="width: 100%"
       >
-        <el-table-column prop="meta.title" label="菜单名称" show-overflow-tooltip />
-        <el-table-column prop="meta.icon" label="菜单icon" align="center">
+        <el-table-column prop="meta.title" label="菜单名称" show-overflow-tooltip width="150" />
+        <el-table-column prop="name" label="菜单name" show-overflow-tooltip width="150" />
+        <el-table-column prop="sort" label="顺序" width="80" />
+        <el-table-column prop="meta.icon" label="菜单图标" align="center" width="100">
           <template #default="scope">
             <div style="display: flex; align-items: center; justify-content: center">
               <i class="iconfont" :class="'icon-' + scope.row.meta.icon"></i>
             </div>
           </template>
         </el-table-column>
-        <el-table-column prop="name" label="菜单name" align="center" show-overflow-tooltip />
-        <el-table-column
-          prop="path"
-          label="菜单路径"
-          width="300"
-          align="center"
-          show-overflow-tooltip
-        />
-        <el-table-column
-          prop="component"
-          label="组件path"
-          width="300"
-          align="center"
-          show-overflow-tooltip
-        />
-        <el-table-column fixed="right" prop="operation" label="操作" width="200" align="center">
-          <template #default>
-            <el-button link type="primary" size="small">
-              <i class="iconfont icon-xiugai"></i> 编辑
+        <el-table-column prop="path" label="菜单路径" show-overflow-tooltip width="300" />
+        <el-table-column prop="meta.isEnable" label="是否启用" width="100">
+          <template #default="{ row }">
+            <el-tag type="success" v-if="row.meta.isEnable">开启</el-tag>
+            <el-tag type="danger" v-else>关闭</el-tag>
+          </template>
+        </el-table-column>
+        <el-table-column prop="meta.isAffix" label="是否固定" width="100">
+          <template #default="{ row }">
+            <el-tag type="success" v-if="row.meta.isAffix">开启</el-tag>
+            <el-tag type="danger" v-else>关闭</el-tag>
+          </template>
+        </el-table-column>
+        <el-table-column prop="meta.isKeepAlive" label="是否缓存" width="100">
+          <template #default="{ row }">
+            <el-tag type="success" v-if="row.meta.isKeepAlive">开启</el-tag>
+            <el-tag type="danger" v-else>关闭</el-tag>
+          </template>
+        </el-table-column>
+        <el-table-column prop="meta.isLink" label="是否链接" width="100">
+          <template #default="{ row }">
+            <el-tag type="success" v-if="row.meta.isLink">是</el-tag>
+            <el-tag type="danger" v-else>否</el-tag>
+          </template>
+        </el-table-column>
+        <el-table-column fixed="right" prop="operation" label="操作" width="160" align="center">
+          <template #default="{ row }">
+            <el-button link type="primary" size="small" @click="handleEdit(row)">
+              <i class="btn-icon mr4 iconfont icon-xiugai"></i> <span>编辑</span>
             </el-button>
-            <el-button link type="primary" size="small">
-              <i class="iconfont icon-shanchu"></i>删除
-            </el-button>
+            <el-popconfirm
+              @confirm="handleDelete(row.id)"
+              confirm-button-text="确认"
+              cancel-button-text="否"
+              title="确认删除该角色?"
+            >
+              <template #reference>
+                <el-button link type="primary" size="small">
+                  <i class="btn-icon mr4 iconfont icon-shanchu"></i><span>删除</span>
+                </el-button>
+              </template>
+            </el-popconfirm>
           </template>
         </el-table-column>
       </el-table>
-      <el-pagination
-        class="pagination"
-        v-model:current-page="currentPage"
-        v-model:page-size="pageSize"
-        :page-sizes="[10, 25, 50, 100]"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="100"
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-      />
     </div>
   </div>
 </template>
 <script lang="ts" setup>
-import { useAuthStore } from '@/stores/modules/auth'
-import { FormInstance } from 'element-plus'
-import { computed, ref, reactive } from 'vue'
+import { onMounted, ref, reactive, toRaw } from 'vue'
+import { ElMessage, FormInstance } from 'element-plus'
+import { getMenuList } from '@/api/modules/system'
+import { Menu } from '@/typings'
 
-const searchFormRef = ref<FormInstance>()
-
-const searchForm = reactive({
-  metaName: '',
-  name: '',
-  path: ''
+onMounted(() => {
+  onSearch()
 })
 
-const onSubmit = () => {
-  console.log('submit!')
+const tableData = ref<Menu[]>([])
+
+const searchFormRef = ref<FormInstance>()
+const searchForm = reactive({
+  title: '',
+  isEnable: 2
+})
+
+const enableOptions = [
+  {
+    value: 2,
+    label: '全部'
+  },
+  {
+    value: 1,
+    label: '开启'
+  },
+  {
+    value: 0,
+    label: '关闭'
+  }
+]
+
+async function onSearch() {
+  const { data } = await getMenuList(toRaw(searchForm))
+  tableData.value = data
 }
 
-const resetForm = (formEl: FormInstance | undefined) => {
-  if (!formEl) return
-  formEl.resetFields()
+const handleDelete = async (id: number) => {
+  console.log(id)
 }
 
-const authStore = useAuthStore()
-const authMenuList = computed(() => authStore.authMenuListGet)
-
-const currentPage = ref(1)
-const pageSize = ref(10)
-
-const handleSizeChange = (val: number) => {
-  console.log(`${val} items per page`)
+const handleNew = () => {
+  ElMessage.info('开发中...')
 }
-const handleCurrentChange = (val: number) => {
-  console.log(`current page: ${val}`)
+const handleEdit = (row: any) => {
+  console.log(row)
 }
 </script>
 
 <style scoped lang="scss">
-.table {
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  .search-box {
-    margin-bottom: 10px;
-  }
-  .table-box {
-    flex: 1;
-    display: flex;
-    height: 100%;
-    flex-direction: column;
-    .table-button {
-      margin-bottom: 16px;
-      width: 150px;
-    }
-    .table {
-      flex: 1;
-    }
-    .pagination {
-      justify-content: right;
-    }
-  }
-}
+@import './index.scss';
 </style>

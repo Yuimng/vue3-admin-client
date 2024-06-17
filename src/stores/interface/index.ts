@@ -1,3 +1,5 @@
+import { Menu } from '@/typings'
+
 /* GlobalState */
 export interface GlobalState {
   isCollapse: boolean
@@ -29,7 +31,7 @@ export interface AuthState {
   authButtonList: {
     [key: string]: string[]
   }
-  authMenuList: Menu.MenuOptions[]
+  authMenuList: Menu[]
 }
 
 /* tabsMenuProps */

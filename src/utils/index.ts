@@ -44,3 +44,19 @@ export function getAllBreadcrumbList(
   }
   return result
 }
+
+export interface MenuOption {
+  label: string
+  value: number
+  children: MenuOption[]
+}
+
+export function getTreeMenuOptions(menuList: Menu[]): MenuOption[] {
+  return menuList.map((item) => {
+    return {
+      label: item.meta.title,
+      value: item.id,
+      children: item.children ? getTreeMenuOptions(item.children) : []
+    }
+  })
+}

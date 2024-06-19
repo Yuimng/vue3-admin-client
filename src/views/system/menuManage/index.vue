@@ -79,7 +79,7 @@
               @confirm="handleDelete(row.id)"
               confirm-button-text="确认"
               cancel-button-text="否"
-              title="确认删除该角色?"
+              title="确认删除该菜单?"
             >
               <template #reference>
                 <el-button link type="primary" size="small">
@@ -91,12 +91,14 @@
         </el-table-column>
       </el-table>
     </div>
+    <MenuDialog ref="menuDialogRef" @refresh="onSearch" />
   </div>
 </template>
 <script lang="ts" setup>
+import MenuDialog from './cpns/menuDialog.vue'
 import { onMounted, ref, reactive, toRaw } from 'vue'
 import { ElMessage, FormInstance } from 'element-plus'
-import { getMenuList } from '@/api/modules/system'
+import { deleteMenu, getMenuList } from '@/api/modules/system'
 import { Menu } from '@/typings'
 
 onMounted(() => {
@@ -132,14 +134,21 @@ async function onSearch() {
 }
 
 const handleDelete = async (id: number) => {
-  console.log(id)
+  const res = await deleteMenu(id)
+  if (res.code !== 200) {
+    ElMessage.error(res.msg)
+  } else {
+    onSearch()
+    ElMessage.success(res.msg)
+  }
 }
 
+const menuDialogRef = ref<InstanceType<typeof MenuDialog>>()
 const handleNew = () => {
-  ElMessage.info('开发中...')
+  menuDialogRef.value?.handleNew()
 }
-const handleEdit = (row: any) => {
-  console.log(row)
+const handleEdit = (row: Menu) => {
+  menuDialogRef.value?.handleEdit(row)
 }
 </script>
 

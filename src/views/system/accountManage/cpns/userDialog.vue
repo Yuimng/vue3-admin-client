@@ -154,7 +154,8 @@
 <script setup lang="ts">
 import { ref, reactive, toRaw } from 'vue'
 import { ElMessage, FormInstance } from 'element-plus'
-import { User, addUser, editUser } from '@/api/modules/system'
+import { addUser, editUser } from '@/api/modules/system'
+import { User } from '@/typings'
 const isEdit = ref(false)
 const dialogVisible = ref(false)
 

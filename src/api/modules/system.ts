@@ -28,3 +28,15 @@ export const deleteRole = (id: number) => {
 export const getMenuList = (data: object) => {
   return http.post<Menu[]>('/menu/list', { ...data })
 }
+
+export const deleteMenu = (id: number) => {
+  return http.post('/menu/delete', { id })
+}
+
+export const addMenu = (data: object) => {
+  return http.post('/menu/add', { ...data })
+}
+
+export const editMenu = (data: object) => {
+  return http.post('/menu/update', { ...data })
+}

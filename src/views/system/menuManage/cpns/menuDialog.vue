@@ -206,32 +206,6 @@ import { getTreeMenuOptions } from '@/utils'
 const isEdit = ref(false)
 const dialogVisible = ref(false)
 
-const handleNew = () => {
-  isEdit.value = false
-  dialogVisible.value = true
-}
-
-const handleEdit = (row: Menu) => {
-  isEdit.value = true
-  editMenuForm.id = row.id
-  editMenuForm.name = row.name
-  editMenuForm.title = row.meta.title
-  editMenuForm.path = row.path
-  editMenuForm.parentId = row.parentId
-  editMenuForm.sort = row.sort
-  editMenuForm.icon = row.meta.icon
-  editMenuForm.isEnable = row.meta.isEnable ? 1 : 0 // 类型转换
-  editMenuForm.isAffix = row.meta.isAffix ? 1 : 0
-  editMenuForm.isKeepAlive = row.meta.isKeepAlive ? 1 : 0
-  editMenuForm.isLink = row.meta.isLink ? 1 : 0
-  dialogVisible.value = true
-}
-
-defineExpose({
-  handleNew,
-  handleEdit
-})
-
 const menuFormRef = ref<FormInstance>()
 const menuForm = reactive({
   name: '',
@@ -263,7 +237,14 @@ const editMenuForm = reactive({
 
 const formRules = reactive({
   title: [{ required: true, message: '请输入菜单名称', trigger: 'blur' }],
-  name: [{ required: true, message: '请输入菜单name', trigger: 'blur' }],
+  name: [
+    { required: true, message: '请输入菜单name', trigger: 'blur' },
+    {
+      pattern: /^[A-Za-z0-9-_]*$/,
+      message: '必须是字母或数字,特殊符号允许-和_',
+      trigger: 'blur'
+    }
+  ],
   path: [{ required: true, message: '请输入菜单路径', trigger: 'blur' }]
 })
 
@@ -290,6 +271,32 @@ const menuList: Menu[] = [
 ]
 menuList[0].children = menuData.value
 const menuOptions = getTreeMenuOptions(menuList)
+
+const handleNew = () => {
+  isEdit.value = false
+  dialogVisible.value = true
+}
+
+const handleEdit = (row: Menu) => {
+  isEdit.value = true
+  editMenuForm.id = row.id
+  editMenuForm.name = row.name
+  editMenuForm.title = row.meta.title
+  editMenuForm.path = row.path
+  editMenuForm.parentId = row.parentId
+  editMenuForm.sort = row.sort
+  editMenuForm.icon = row.meta.icon
+  editMenuForm.isEnable = row.meta.isEnable ? 1 : 0 // 类型转换
+  editMenuForm.isAffix = row.meta.isAffix ? 1 : 0
+  editMenuForm.isKeepAlive = row.meta.isKeepAlive ? 1 : 0
+  editMenuForm.isLink = row.meta.isLink ? 1 : 0
+  dialogVisible.value = true
+}
+
+defineExpose({
+  handleNew,
+  handleEdit
+})
 
 const handleClose = () => {
   menuFormRef.value?.resetFields()

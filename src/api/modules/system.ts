@@ -1,6 +1,5 @@
 import http from '@/api'
 import { Menu, ResultTable, Role, User } from '@/typings'
-
 export const getUserList = (data: object) => {
   return http.post<ResultTable<User>>('/user/list', { ...data })
 }
@@ -17,12 +16,32 @@ export const editUser = (data: object) => {
   return http.post('/user/update', { ...data })
 }
 
+export const getRolesAll = () => {
+  return http.post<Role[]>('/role/listAll')
+}
+
 export const getRoleList = (data: object) => {
   return http.post<ResultTable<Role>>('/role/list', { ...data })
 }
 
 export const deleteRole = (id: number) => {
   return http.post('/role/delete', { id })
+}
+
+export const addRole = (data: object) => {
+  return http.post('/role/add', { ...data })
+}
+
+export const editRole = (data: object) => {
+  return http.post('/role/update', { ...data })
+}
+
+export const getRoleMenus = (roleId: number) => {
+  return http.post<number[]>('/role/useMenus', { roleId })
+}
+
+export const getMenusAll = () => {
+  return http.post<Menu[]>('/menu/listAll')
 }
 
 export const getMenuList = (data: object) => {

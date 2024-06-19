@@ -60,3 +60,24 @@ export function getTreeMenuOptions(menuList: Menu[]): MenuOption[] {
     }
   })
 }
+
+export interface MenuTree {
+  id: number
+  label: string
+  children?: MenuTree[]
+}
+
+export function getTreeMenu(menuList: Menu[]): MenuTree[] {
+  return menuList.map((item) => {
+    const treeItem: MenuTree = {
+      id: item.id,
+      label: item.meta.title
+    }
+
+    if (item.children && item.children.length > 0) {
+      treeItem.children = getTreeMenu(item.children)
+    }
+
+    return treeItem
+  })
+}

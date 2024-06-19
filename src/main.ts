@@ -14,6 +14,7 @@ import '@/styles/iconfont.scss'
 // el-message el-message-box css
 import 'element-plus/es/components/message-box/style/css'
 import 'element-plus/es/components/message/style/css'
+import 'element-plus/es/components/tree/style/css'
 
 import router from '@/routers'
 

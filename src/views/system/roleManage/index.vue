@@ -32,7 +32,12 @@
         <el-table-column prop="id" label="Id" width="50" />
         <el-table-column prop="role" label="角色" width="150" />
         <el-table-column prop="roleName" label="角色名称" width="150" />
-        <el-table-column prop="isSuper" label="超级管理员" width="150" />
+        <el-table-column prop="isSuper" label="超级管理员" width="150">
+          <template #default="{ row }">
+            <el-tag type="success" v-if="row.isSuper === 1">是</el-tag>
+            <el-tag type="danger" v-else>否</el-tag>
+          </template>
+        </el-table-column>
         <el-table-column prop="createdAt" label="创建时间" width="180" />
         <el-table-column prop="remark" label="备注" />
         <el-table-column fixed="right" prop="operation" label="操作" width="160" align="center">
@@ -66,10 +71,12 @@
         @current-change="handleCurrentChange"
       />
     </div>
+    <RoleDialog ref="roleDialogRef" @refresh="onSearch" />
   </div>
 </template>
 
 <script setup lang="ts">
+import RoleDialog from './cpns/roleDialog.vue'
 import { onMounted, ref, reactive } from 'vue'
 import { ElMessage, FormInstance } from 'element-plus'
 import { deleteRole, getRoleList } from '@/api/modules/system'
@@ -94,11 +101,11 @@ const superOptions = [
   },
   {
     value: 1,
-    label: '超级管理员'
+    label: '是'
   },
   {
     value: 0,
-    label: '普通用户'
+    label: '否'
   }
 ]
 
@@ -139,11 +146,12 @@ const handleDelete = async (id: number) => {
   }
 }
 
+const roleDialogRef = ref<InstanceType<typeof RoleDialog>>()
 const handleNew = () => {
-  ElMessage.info('开发中...')
+  roleDialogRef.value?.handleNew()
 }
 const handleEdit = (row: Role) => {
-  console.log(row)
+  roleDialogRef.value?.handleEdit(row)
 }
 </script>
 

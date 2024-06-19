@@ -152,34 +152,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, toRaw } from 'vue'
+import { ref, reactive, toRaw, onMounted } from 'vue'
 import { ElMessage, FormInstance } from 'element-plus'
-import { addUser, editUser } from '@/api/modules/system'
+import { addUser, editUser, getRolesAll } from '@/api/modules/system'
 import { User } from '@/typings'
 const isEdit = ref(false)
 const dialogVisible = ref(false)
-
-const handleNew = () => {
-  isEdit.value = false
-  dialogVisible.value = true
-}
-
-const handleEdit = (row: User) => {
-  isEdit.value = true
-  editUserForm.id = row.id
-  editUserForm.username = row.username as string // 非空
-  editUserForm.name = row.name
-  editUserForm.roleId = row.roleId
-  editUserForm.phone = row.phone || ''
-  editUserForm.email = row.email || ''
-  editUserForm.remark = row.remark || ''
-  dialogVisible.value = true
-}
-
-defineExpose({
-  handleNew,
-  handleEdit
-})
 
 const userFormRef = ref<FormInstance>()
 const userForm = reactive({
@@ -194,7 +172,12 @@ const userForm = reactive({
 const userFormRules = reactive({
   username: [
     { required: true, message: '请输入用户名称', trigger: 'blur' },
-    { min: 2, max: 10, message: '账号名称长度为2-10个字符', trigger: 'blur' }
+    { min: 2, max: 10, message: '账号名称长度为2-10个字符', trigger: 'blur' },
+    {
+      pattern: /^[A-Za-z0-9-_]*$/,
+      message: '必须是字母或数字,特殊符号允许-和_',
+      trigger: 'blur'
+    }
   ],
   password: [
     { required: true, message: '请输入用户密码', trigger: 'blur' },
@@ -223,7 +206,12 @@ const editUserForm = reactive({
 const editUserFormRules = reactive({
   username: [
     { required: true, message: '请输入用户名称', trigger: 'blur' },
-    { min: 2, max: 10, message: '账号名称长度为2-10个字符', trigger: 'blur' }
+    { min: 2, max: 10, message: '账号名称长度为2-10个字符', trigger: 'blur' },
+    {
+      pattern: /^[A-Za-z0-9-_]*$/,
+      message: '必须是字母或数字,特殊符号允许-和_',
+      trigger: 'blur'
+    }
   ],
   name: [
     { required: true, message: '请输入用户昵称', trigger: 'blur' },
@@ -231,17 +219,47 @@ const editUserFormRules = reactive({
   ]
 })
 
-// TODO: 获取角色列表
-const roleOptions = [
-  {
-    value: 1,
-    label: '超级管理员'
-  },
-  {
-    value: 2,
-    label: '普通用户'
+onMounted(() => {
+  initRoles()
+})
+
+const roleOptions = ref<{ value: number; label: string }[]>([])
+
+const initRoles = async () => {
+  const res = await getRolesAll()
+  if (res.code === 200) {
+    roleOptions.value = res.data.map((item) => {
+      return {
+        value: item.id,
+        label: item.role
+      }
+    })
+  } else {
+    ElMessage.error(res.msg)
   }
-]
+}
+
+const handleNew = () => {
+  isEdit.value = false
+  dialogVisible.value = true
+}
+
+const handleEdit = (row: User) => {
+  isEdit.value = true
+  editUserForm.id = row.id
+  editUserForm.username = row.username as string // 非空
+  editUserForm.name = row.name
+  editUserForm.roleId = row.roleId
+  editUserForm.phone = row.phone || ''
+  editUserForm.email = row.email || ''
+  editUserForm.remark = row.remark || ''
+  dialogVisible.value = true
+}
+
+defineExpose({
+  handleNew,
+  handleEdit
+})
 
 const handleClose = () => {
   userFormRef.value?.resetFields()

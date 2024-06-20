@@ -215,7 +215,7 @@ const handleEdit = (row: Role) => {
   editRoleForm.role = row.role
   editRoleForm.roleName = row.roleName
   editRoleForm.isSuper = row.isSuper
-  editRoleForm.remark = row.remark
+  editRoleForm.remark = row.remark || ''
   dialogVisible.value = true
 }
 

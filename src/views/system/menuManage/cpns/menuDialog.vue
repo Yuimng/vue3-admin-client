@@ -197,12 +197,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, toRaw } from 'vue'
+import { ref, reactive, computed, toRaw, onMounted } from 'vue'
 import { ElMessage, FormInstance } from 'element-plus'
 import { addMenu, editMenu } from '@/api/modules/system'
 import { Menu } from '@/typings'
 import { useAuthStore } from '@/stores/modules/auth'
-import { getTreeMenuOptions } from '@/utils'
+import { MenuOption, getTreeMenuOptions } from '@/utils'
 const isEdit = ref(false)
 const dialogVisible = ref(false)
 
@@ -248,29 +248,37 @@ const formRules = reactive({
   path: [{ required: true, message: '请输入菜单路径', trigger: 'blur' }]
 })
 
-const authStore = useAuthStore()
-const menuData = computed(() => authStore.authMenuList)
-const menuList: Menu[] = [
-  {
-    id: 0,
-    name: '',
-    path: '',
-    parentId: 0,
-    sort: 1,
-    meta: {
-      icon: '',
-      title: '主目录',
-      isLink: false,
-      isEnable: false,
-      isAffix: false,
-      isKeepAlive: false
-    },
-    component: '',
-    createdAt: ''
-  }
-]
-menuList[0].children = menuData.value
-const menuOptions = getTreeMenuOptions(menuList)
+const menuOptions = ref<MenuOption[]>([])
+
+onMounted(() => {
+  initMenus()
+})
+
+const initMenus = async () => {
+  const authStore = useAuthStore()
+  const menuData = computed(() => authStore.authMenuList)
+  const menuList: Menu[] = [
+    {
+      id: 0,
+      name: '',
+      path: '',
+      parentId: 0,
+      sort: 1,
+      meta: {
+        icon: '',
+        title: '主目录',
+        isLink: false,
+        isEnable: false,
+        isAffix: false,
+        isKeepAlive: false
+      },
+      component: '',
+      createdAt: ''
+    }
+  ]
+  menuList[0].children = menuData.value
+  menuOptions.value = getTreeMenuOptions(menuList)
+}
 
 const handleNew = () => {
   isEdit.value = false

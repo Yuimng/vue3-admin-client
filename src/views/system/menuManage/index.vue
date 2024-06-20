@@ -28,13 +28,7 @@
           <i class="btn-icon mr4 iconfont icon-quanjia" /><span>新增菜单</span>
         </el-button>
       </div>
-      <el-table
-        class="table-content"
-        :data="tableData"
-        row-key="id"
-        default-expand-all
-        style="width: 100%"
-      >
+      <el-table class="table-content" :data="tableData" row-key="id" style="width: 100%">
         <el-table-column prop="meta.title" label="菜单名称" show-overflow-tooltip width="150" />
         <el-table-column prop="name" label="菜单name" show-overflow-tooltip width="150" />
         <el-table-column prop="sort" label="顺序" width="80" />

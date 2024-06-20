@@ -230,6 +230,8 @@ const handleClose = () => {
   if (isEdit.value) {
     // 清除选中
     editTreeRef.value!.setCheckedKeys([], false)
+  } else {
+    treeRef.value!.setCheckedKeys([], false)
   }
   dialogVisible.value = false
 }

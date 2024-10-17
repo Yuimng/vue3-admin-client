@@ -7,6 +7,7 @@ export const useGlobalStore = defineStore({
   id: 'ym-global',
   state: (): GlobalState => ({
     isCollapse: false,
+    isDark: false,
     primary: DEFAULT_PRIMARY
   }),
   getters: {},

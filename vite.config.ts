@@ -37,6 +37,13 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       }),
       visualizer({ open: false })
     ],
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@import "@/styles/var.scss";`
+        }
+      }
+    },
     esbuild: {
       pure: viteEnv.VITE_DROP_CONSOLE ? ['console.log', 'debugger'] : []
     },

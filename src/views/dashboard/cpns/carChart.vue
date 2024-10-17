@@ -16,6 +16,9 @@ const option: ECOption = {
     left: 'center',
     top: '45%',
     textStyle: {
+      color: '#000',
+      textBorderColor: '#fff', // 文字边缘颜色
+      textBorderWidth: 1, // 文字边缘宽度
       fontWeight: 600,
       fontSize: 16
     }
@@ -32,7 +35,6 @@ const option: ECOption = {
       radius: ['45%', '70%'],
       avoidLabelOverlap: false,
       itemStyle: {
-        borderColor: '#fff',
         borderWidth: 2
       },
       label: {

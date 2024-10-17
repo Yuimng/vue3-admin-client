@@ -27,6 +27,7 @@
       <Main />
     </el-container>
   </el-container>
+  <ThemeDrawer />
 </template>
 
 <script setup lang="ts">
@@ -38,6 +39,7 @@ import SubMenu from './cpns/Menu/SubMenu.vue'
 import ToolBarLeft from './cpns/Header/ToolBarLeft.vue'
 import ToolBarRight from './cpns/Header/ToolBarRight.vue'
 import Main from './cpns/Main/index.vue'
+import ThemeDrawer from './cpns/ThemeDrawer/index.vue'
 
 const route = useRoute()
 const authStore = useAuthStore()

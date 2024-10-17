@@ -14,7 +14,7 @@
         <el-dropdown-item @click="tabsStore.closeTabsOnSide(route.fullPath, 'right')">
           <span class="flx-center"><i class="iconfont icon-d-arrow-right"></i>关闭右侧</span>
         </el-dropdown-item>
-        <el-dropdown-item divided @click="tabsStore.closeMultipleTab(route.fullPath)">
+        <el-dropdown-item @click="tabsStore.closeMultipleTab(route.fullPath)">
           <span class="flx-center"><i class="iconfont icon-close-circle"></i>关闭其他</span>
         </el-dropdown-item>
         <el-dropdown-item>
@@ -51,7 +51,7 @@ const closeAllTab = () => {
 .down-box {
   width: 50px;
   height: 40px;
-  border-left: 1px solid #e6e6e6;
+  border-left: 1px solid var(--el-border-color-light);
   cursor: pointer;
 }
 </style>

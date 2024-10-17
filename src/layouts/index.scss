@@ -3,8 +3,7 @@
   height: 100%;
   :deep(.el-aside) {
     width: auto;
-    border-right: 1px solid #e6e6e6;
-    // background-color: #eee; /* ps */
+    border-right: 1px solid var(--el-border-color-light);
     .aside {
       display: flex;
       flex-direction: column;
@@ -45,7 +44,6 @@
     justify-content: space-between;
     height: 55px;
     padding: 0 15px;
-    // background-color: var(--el-header-bg-color);
-    border-bottom: 1px solid #e6e6e6; /* ps */
+    border-bottom: 1px solid var(--el-border-color-light);
   }
 }

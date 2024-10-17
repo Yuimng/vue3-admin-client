@@ -39,7 +39,10 @@ const option: ECOption = {
     itemWidth: 15,
     itemHeight: 6,
     align: 'auto',
-    icon: 'rect'
+    icon: 'rect',
+    textStyle: {
+      color: '#9f9fa6'
+    }
   },
   grid: {
     top: '20%',
@@ -53,13 +56,9 @@ const option: ECOption = {
       type: 'category',
       boundaryGap: true,
       axisLine: {
-        show: true,
-        lineStyle: {
-          color: '#000'
-        }
+        show: true
       },
       axisLabel: {
-        color: '#000',
         padding: 0,
         fontSize: 12,
         formatter: function (data) {
@@ -75,27 +74,19 @@ const option: ECOption = {
   yAxis: {
     name: '(人数)',
     nameTextStyle: {
-      color: '#000',
       fontSize: 12,
       padding: [0, 30, 0, 0]
     },
     minInterval: 1,
     splitNumber: 5,
     splitLine: {
-      show: true,
-      lineStyle: {
-        color: '#eee'
-      }
+      show: true
     },
     axisLine: {
-      show: false,
-      lineStyle: {
-        color: '#000'
-      }
+      show: false
     },
     axisLabel: {
       show: true,
-      color: '#000',
       padding: 0
     },
     axisTick: {
@@ -115,7 +106,6 @@ const option: ECOption = {
     },
     itemStyle: {
       // color: data.colors[index],
-      borderColor: '#646ace',
       borderWidth: 2
     },
     tooltip: {

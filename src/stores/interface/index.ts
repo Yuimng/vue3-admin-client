@@ -3,6 +3,7 @@ import { Menu } from '@/typings'
 /* GlobalState */
 export interface GlobalState {
   isCollapse: boolean
+  isDark: boolean
   primary: string
 }
 

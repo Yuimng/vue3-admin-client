@@ -26,7 +26,9 @@ export const useTheme = () => {
       isDark.value ? `${getLightColor(val, 0.2)}` : `${getDarkColor(val, 0.3)}`
     )
     for (let i = 1; i <= 9; i++) {
-      const primaryColor = `${getLightColor(val, i / 10)}`
+      const primaryColor = isDark.value
+        ? `${getDarkColor(val, i / 10)}`
+        : `${getLightColor(val, i / 10)}`
       document.documentElement.style.setProperty(`--el-color-primary-light-${i}`, primaryColor)
     }
 

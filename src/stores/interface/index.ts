@@ -4,6 +4,7 @@ import { Menu } from '@/typings'
 export interface GlobalState {
   isCollapse: boolean
   isDark: boolean
+  breadcrumb: boolean
   primary: string
 }
 

@@ -43,13 +43,16 @@ function createComponentWrapper(component: VNode, route: RouteLocationNormalized
 
 const globalStore = useGlobalStore()
 const isCollapse = computed(() => globalStore.isCollapse)
+const breadcrumb = computed(() => globalStore.breadcrumb)
 
-// 监听窗口大小变化，折叠侧边栏
+// 监听窗口大小变化，折叠侧边栏, 控制面包屑导航
 const screenWidth = ref(0)
 const listeningWindow = useDebounceFn(() => {
   screenWidth.value = document.body.clientWidth
   if (!isCollapse.value && screenWidth.value < 1200) globalStore.setCollapseState(true)
   if (isCollapse.value && screenWidth.value > 1200) globalStore.setCollapseState(false)
+  if (breadcrumb.value && screenWidth.value < 768) globalStore.setBreadcrumbState(false)
+  if (!breadcrumb.value && screenWidth.value > 768) globalStore.setBreadcrumbState(true)
 }, 100)
 window.addEventListener('resize', listeningWindow, false)
 onBeforeUnmount(() => {

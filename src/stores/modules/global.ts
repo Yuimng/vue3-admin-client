@@ -8,12 +8,16 @@ export const useGlobalStore = defineStore({
   state: (): GlobalState => ({
     isCollapse: false,
     isDark: false,
+    breadcrumb: true,
     primary: DEFAULT_PRIMARY
   }),
   getters: {},
   actions: {
     setCollapseState(state: boolean) {
       this.isCollapse = state
+    },
+    setBreadcrumbState(state: boolean) {
+      this.breadcrumb = state
     },
     setPrimaryState(color: string) {
       this.primary = color

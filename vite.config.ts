@@ -30,20 +30,15 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
     plugins: [
       vue(),
       AutoImport({
-        resolvers: [ElementPlusResolver()]
+        resolvers: [ElementPlusResolver()],
+        dts: 'src/typings/auto-imports.d.ts' // 指定类型声明文件的路径
       }),
       Components({
-        resolvers: [ElementPlusResolver()]
+        resolvers: [ElementPlusResolver()],
+        dts: 'src/typings/components.d.ts' // 指定类型声明文件的路径
       }),
       visualizer({ open: false })
     ],
-    css: {
-      preprocessorOptions: {
-        scss: {
-          additionalData: `@import "@/styles/var.scss";`
-        }
-      }
-    },
     esbuild: {
       pure: viteEnv.VITE_DROP_CONSOLE ? ['console.log', 'debugger'] : []
     },

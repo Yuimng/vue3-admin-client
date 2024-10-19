@@ -1,63 +1,67 @@
 .gather-card {
   box-sizing: border-box;
-  width: 100%;
-  border-radius: 8px;
-  padding: 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+  padding: 24px;
+  border-radius: 8px;
+
   .card-info {
     .card-title {
       font-size: 14px;
     }
+
     .card-text {
-      font-size: 32px;
       margin: 0;
       margin-top: 10px;
+      font-size: 32px;
     }
   }
+
   .card-icon {
     i {
       font-size: 40px;
-      color: rgba(30, 32, 37, 0.18);
+      color: rgb(30 32 37 / 18%);
     }
   }
 }
 
 .bg-1 {
-  background: linear-gradient(rgba(43, 90, 237, 0.8) 0%, rgb(43, 90, 237) 100%);
+  background: linear-gradient(rgb(43 90 237 / 80%) 0%, rgb(43 90 237) 100%);
 }
 
 .bg-2 {
-  background: linear-gradient(rgba(251, 164, 10, 0.8) 0%, rgb(251, 164, 10) 100%);
+  background: linear-gradient(rgb(251 164 10 / 80%) 0%, rgb(251 164 10) 100%);
 }
 
 .bg-3 {
-  background: linear-gradient(rgba(43, 174, 133, 0.8) 0%, rgb(43, 174, 133) 100%);
+  background: linear-gradient(rgb(43 174 133 / 80%) 0%, rgb(43 174 133) 100%);
 }
 
 .bg-4 {
-  background: linear-gradient(rgba(241, 144, 140, 0.8) 0%, rgb(241, 144, 140) 100%);
+  background: linear-gradient(rgb(241 144 140 / 80%) 0%, rgb(241 144 140) 100%);
 }
 
 .bg-5 {
-  background: linear-gradient(rgba(0, 201, 245, 0.8) 0%, rgb(0, 201, 245) 100%);
+  background: linear-gradient(rgb(0 201 245 / 80%) 0%, rgb(0 201 245) 100%);
 }
 
 .bg-6 {
-  background: linear-gradient(rgba(36, 134, 185, 0.8) 0%, rgb(36, 134, 185) 100%);
+  background: linear-gradient(rgb(36 134 185 / 80%) 0%, rgb(36 134 185) 100%);
 }
 
 .chart-card {
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 100%;
   height: 360px;
-  border-radius: 8px;
   padding: 24px;
   background-color: var(--el-bg-color-overlay);
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
+  border-radius: 8px;
+
   .chart-title {
     font-size: 20px;
     font-weight: 600;

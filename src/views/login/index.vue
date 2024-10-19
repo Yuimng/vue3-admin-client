@@ -23,7 +23,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import LoginForm from './cpns/LoginForm.vue'
+import LoginForm from './components/LoginForm.vue'
 const loginRef = ref<InstanceType<typeof LoginForm>>()
 
 const handleSubmitClick = () => {
@@ -36,5 +36,5 @@ const handleResetClick = () => {
 </script>
 
 <style scoped lang="scss">
-@import './index.scss';
+@import './index';
 </style>

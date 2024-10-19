@@ -19,17 +19,20 @@
 }
 
 .role-manage {
-	height: 100%;
 	display: flex;
 	flex-direction: column;
+	height: 100%;
+
 	.table-container {
-		flex: 1;
-		height: 100%;
 		display: flex;
+		flex: 1;
 		flex-direction: column;
+		height: 100%;
+
 		.table-content {
 			flex: 1;
 		}
+
 		.table-pagination {
 			justify-content: right;
 		}

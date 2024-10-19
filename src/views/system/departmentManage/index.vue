@@ -9,6 +9,7 @@
 <style scoped lang="scss">
 .department-manage {
   height: 100%;
+
   .title {
     text-align: center;
   }

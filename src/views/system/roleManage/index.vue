@@ -76,11 +76,11 @@
 </template>
 
 <script setup lang="ts">
-import RoleDialog from './cpns/roleDialog.vue'
+import RoleDialog from './components/roleDialog.vue'
 import { onMounted, ref, reactive } from 'vue'
 import { ElMessage, FormInstance } from 'element-plus'
 import { deleteRole, getRoleList } from '@/api/modules/system'
-import { Role } from '@/typings'
+import { Role } from '@/api/interface/system'
 
 onMounted(() => {
   onSearch()
@@ -156,5 +156,5 @@ const handleEdit = (row: Role) => {
 </script>
 
 <style scoped lang="scss">
-@import './index.scss';
+@import './index';
 </style>

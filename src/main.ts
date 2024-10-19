@@ -18,8 +18,8 @@ import 'element-plus/theme-chalk/dark/css-vars.css'
 // custom element dark css
 import '@/styles/element-dark.scss'
 
-import router from '@/routers'
+import router from '@/router'
 
-import pinia from '@/stores'
+import pinia from '@/store'
 
 createApp(App).use(router).use(pinia).mount('#app')

@@ -11,5 +11,5 @@ const value = ref<string>('')
 </script>
 
 <style scoped lang="scss">
-@import './index.scss';
+@import './index';
 </style>

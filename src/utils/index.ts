@@ -1,4 +1,4 @@
-import { Menu } from '@/typings'
+import { Menu } from '@/api/interface/system'
 
 /**
  * @description 使用递归扁平化菜单，方便添加动态路由

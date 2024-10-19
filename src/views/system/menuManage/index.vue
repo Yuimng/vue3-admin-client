@@ -89,11 +89,11 @@
   </div>
 </template>
 <script lang="ts" setup>
-import MenuDialog from './cpns/menuDialog.vue'
+import MenuDialog from './components/menuDialog.vue'
 import { onMounted, ref, reactive, toRaw } from 'vue'
 import { ElMessage, FormInstance } from 'element-plus'
 import { deleteMenu, getMenuList } from '@/api/modules/system'
-import { Menu } from '@/typings'
+import { Menu } from '@/api/interface/system'
 
 onMounted(() => {
   onSearch()
@@ -147,5 +147,5 @@ const handleEdit = (row: Menu) => {
 </script>
 
 <style scoped lang="scss">
-@import './index.scss';
+@import './index';
 </style>

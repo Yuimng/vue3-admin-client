@@ -5,7 +5,7 @@ import axios, {
   AxiosResponse
 } from 'axios'
 import { ResultData } from './interface'
-import { useUserStore } from '@/stores/modules/user'
+import { useUserStore } from '@/store/modules/user'
 
 const config = {
   // 默认地址请求地址，可在 .env.** 文件中修改

@@ -16,7 +16,7 @@ import {
 import { EChartsType, ECElementEvent } from 'echarts/core'
 import echarts, { ECOption } from './config'
 import { useDebounceFn } from '@vueuse/core'
-import { useGlobalStore } from '@/stores/modules/global'
+import { useGlobalStore } from '@/store/modules/global'
 import { storeToRefs } from 'pinia'
 
 interface Props {

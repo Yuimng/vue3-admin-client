@@ -86,10 +86,10 @@
 </template>
 
 <script setup lang="ts">
-import VistorChart from './cpns/vistorChart.vue'
-import CarChart from './cpns/carChart.vue'
+import VistorChart from './components/vistorChart.vue'
+import CarChart from './components/carChart.vue'
 </script>
 
 <style scoped lang="scss">
-@import './index.scss';
+@import './index';
 </style>

@@ -1,5 +1,5 @@
 import { DEFAULT_PRIMARY } from '@/config'
-import { useGlobalStore } from '@/stores/modules/global'
+import { useGlobalStore } from '@/store/modules/global'
 import { getDarkColor, getLightColor } from '@/utils/color'
 import { storeToRefs } from 'pinia'
 

@@ -7,6 +7,7 @@ html.dark {
   --w-e-textarea-color: #eeeeee;
   --w-e-toolbar-active-bg-color: #464646;
   --w-e-toolbar-border-color: var(--el-border-color-darker);
+
   .w-e-bar-item button:hover,
   .w-e-menu-tooltip-v5::before {
     color: #eeeeee;
@@ -15,10 +16,13 @@ html.dark {
   /* login */
   .login-container {
     background-color: #191919 !important;
+
     .login-box {
       background-color: rgb(0 0 0 / 80%) !important;
+
       .login-form {
         box-shadow: rgb(255 255 255 / 12%) 0 2px 10px 2px !important;
+
         .logo-text {
           color: var(--el-text-color-primary) !important;
         }
@@ -28,13 +32,13 @@ html.dark {
 
   /* 下拉和菜单 */
   .el-dropdown-menu__item:hover, .el-sub-menu__title:hover, .el-menu-item:hover {
-    background-color: #000;
     color: var(--el-color-primary);
+    background-color: #000000;
   }
 
   .el-menu-item.is-active {
+    color: #ffffff;
     background-color: var(--el-color-primary);
-    color: #fff;
   }
 
 }

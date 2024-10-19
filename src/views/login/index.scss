@@ -4,6 +4,7 @@
   background-image: url('@/assets/images/login_bg.svg');
   background-size: 100% 100%;
   background-size: cover;
+
   .login-box {
     box-sizing: border-box;
     display: flex;
@@ -14,27 +15,33 @@
     padding: 0 50px;
     background-color: rgb(255 255 255 / 80%);
     border-radius: 10px;
+
     .login-left {
       width: 800px;
       margin-right: 20px;
+
       .login-left-img {
         width: 90%;
         height: 100%;
       }
     }
+
     .login-form {
       width: 420px;
       padding: 50px 40px 45px;
       border-radius: 10px;
       box-shadow: rgb(0 0 0 / 10%) 0 2px 10px 2px;
+
       .login-logo {
         display: flex;
         align-items: center;
         justify-content: center;
         margin-bottom: 32px;
+
         .login-icon {
           width: 60px;
         }
+
         .logo-text {
           padding: 0 0 0 25px;
           margin: 0;
@@ -44,9 +51,11 @@
           white-space: nowrap;
         }
       }
+
       .login-btns {
         display: flex;
         justify-content: space-between;
+
         .login-btn {
           width: 48%;
         }

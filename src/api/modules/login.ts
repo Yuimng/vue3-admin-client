@@ -1,6 +1,6 @@
 import http from '@/api'
 import { Login } from '@/api/interface'
-import { Menu } from '@/typings'
+import { Menu } from '@/api/interface/system'
 
 /**
  * @description: 登录模块接口列表

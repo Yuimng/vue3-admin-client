@@ -1,5 +1,5 @@
 import http from '@/api'
-import { Menu, ResultTable, Role, User } from '@/typings'
+import { Menu, ResultTable, Role, User } from '@/api/interface/system'
 export const getUserList = (data: object) => {
   return http.post<ResultTable<User>>('/user/list', { ...data })
 }

@@ -64,11 +64,11 @@
 </template>
 
 <script lang="ts" setup>
-import UserDialog from './cpns/userDialog.vue'
+import UserDialog from './components/userDialog.vue'
 import { onMounted, ref, reactive } from 'vue'
 import { ElMessage, FormInstance } from 'element-plus'
 import { deleteUser, getUserList } from '@/api/modules/system'
-import { User } from '@/typings'
+import { User } from '@/api/interface/system'
 
 onMounted(() => {
   onSearch()
@@ -128,5 +128,5 @@ const handleEdit = (row: User) => {
 </script>
 
 <style scoped lang="scss">
-@import './index.scss';
+@import './index';
 </style>

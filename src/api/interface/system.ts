@@ -2,6 +2,7 @@ export interface User {
   id: number
   name: string
   username: string | null
+  deptCode: string
   email: string | null
   phone: string | null
   avatar: string | null
@@ -47,4 +48,14 @@ export interface ResultTable<T = any> {
   count: number
   /** 列表数据 */
   rows: T[]
+}
+
+export interface Department {
+  name: string
+  code: string
+  parentCode: string
+  sort: number
+  isEnable: number
+  createdAt: string
+  children?: Department[]
 }

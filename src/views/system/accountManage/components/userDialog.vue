@@ -20,13 +20,15 @@
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="用户密码" prop="password">
-              <el-input
-                v-model="userForm.password"
-                type="password"
-                show-password
-                placeholder="输入密码"
-                clearable
+            <el-form-item label="部门" prop="deptCode">
+              <el-tree-select
+                v-model="userForm.deptCode"
+                :data="treeData"
+                check-strictly
+                :render-after-expand="false"
+                style="width: 240px"
+                node-key="code"
+                :props="{ label: 'name' }"
               />
             </el-form-item>
           </el-col>
@@ -63,6 +65,19 @@
           </el-col>
         </el-row>
         <el-row>
+          <el-col :span="12">
+            <el-form-item label="用户密码" prop="password">
+              <el-input
+                v-model="userForm.password"
+                type="password"
+                show-password
+                placeholder="输入密码"
+                clearable
+              />
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
           <el-col :span="24">
             <el-form-item label="备注" prop="remark">
               <el-input
@@ -94,6 +109,19 @@
           <el-col :span="12">
             <el-form-item label="用户名称" prop="username">
               <el-input v-model="editUserForm.username" placeholder="输入名称" clearable />
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="部门" prop="deptCode">
+              <el-tree-select
+                v-model="editUserForm.deptCode"
+                :data="treeData"
+                check-strictly
+                :render-after-expand="false"
+                style="width: 240px"
+                node-key="code"
+                :props="{ label: 'name' }"
+              />
             </el-form-item>
           </el-col>
         </el-row>
@@ -154,8 +182,8 @@
 <script setup lang="ts">
 import { ref, reactive, toRaw, onMounted } from 'vue'
 import { ElMessage, FormInstance } from 'element-plus'
-import { addUser, editUser, getRolesAll } from '@/api/modules/system'
-import { User } from '@/api/interface/system'
+import { addUser, editUser, getDepartmentsAll, getRolesAll } from '@/api/modules/system'
+import { Department, User } from '@/api/interface/system'
 const isEdit = ref(false)
 const dialogVisible = ref(false)
 
@@ -164,6 +192,7 @@ const userForm = reactive({
   username: '',
   password: '',
   name: '',
+  deptCode: '100', // 默认部门顶级
   roleId: 2, // 默认普通用户
   phone: '',
   email: '',
@@ -198,6 +227,7 @@ const editUserForm = reactive({
   id: 0,
   username: '',
   name: '',
+  deptCode: '100', // 默认部门顶级
   roleId: 2, // 默认普通用户
   phone: '',
   email: '',
@@ -221,6 +251,7 @@ const editUserFormRules = reactive({
 
 onMounted(() => {
   initRoles()
+  initDepts()
 })
 
 const roleOptions = ref<{ value: number; label: string }[]>([])
@@ -239,6 +270,16 @@ const initRoles = async () => {
   }
 }
 
+const treeData = ref<Department[]>([])
+const initDepts = async () => {
+  const res = await getDepartmentsAll()
+  if (res.code === 200) {
+    treeData.value = res.data
+  } else {
+    ElMessage.error(res.msg)
+  }
+}
+
 const handleNew = () => {
   isEdit.value = false
   dialogVisible.value = true
@@ -249,6 +290,7 @@ const handleEdit = (row: User) => {
   editUserForm.id = row.id
   editUserForm.username = row.username as string // 非空
   editUserForm.name = row.name
+  editUserForm.deptCode = row.deptCode
   editUserForm.roleId = row.roleId
   editUserForm.phone = row.phone || ''
   editUserForm.email = row.email || ''

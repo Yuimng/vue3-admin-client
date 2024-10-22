@@ -1,4 +1,4 @@
-import { Menu } from '@/api/interface/system'
+import { Department, Menu } from '@/api/interface/system'
 
 /**
  * @description 使用递归扁平化菜单，方便添加动态路由
@@ -80,4 +80,19 @@ export function getTreeMenu(menuList: Menu[]): MenuTree[] {
 
     return treeItem
   })
+}
+
+export function findNodeByCode(tree: Department[], code: string): Department | undefined {
+  for (const node of tree) {
+    if (node.code === code) {
+      return node
+    }
+    if (node.children && node.children.length > 0) {
+      const foundNode = findNodeByCode(node.children, code)
+      if (foundNode) {
+        return foundNode
+      }
+    }
+  }
+  return undefined
 }

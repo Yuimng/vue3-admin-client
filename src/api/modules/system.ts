@@ -1,5 +1,5 @@
 import http from '@/api'
-import { Menu, ResultTable, Role, User } from '@/api/interface/system'
+import { Department, Menu, ResultTable, Role, User } from '@/api/interface/system'
 export const getUserList = (data: object) => {
   return http.post<ResultTable<User>>('/user/list', { ...data })
 }
@@ -58,4 +58,8 @@ export const addMenu = (data: object) => {
 
 export const editMenu = (data: object) => {
   return http.post('/menu/update', { ...data })
+}
+
+export const getDepartmentsAll = () => {
+  return http.post<Department[]>('/department/listAll')
 }

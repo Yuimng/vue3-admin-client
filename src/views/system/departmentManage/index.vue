@@ -4,11 +4,11 @@
       default-expand-all
       class="table-content"
       :data="tableData"
-      row-key="code"
+      row-key="id"
       style="width: 100%"
     >
       <el-table-column prop="name" label="部门名称" show-overflow-tooltip />
-      <el-table-column prop="code" label="部门编码" show-overflow-tooltip />
+      <el-table-column prop="id" label="部门ID" show-overflow-tooltip />
       <el-table-column prop="sort" label="顺序" />
       <el-table-column prop="isEnable" label="是否启用">
         <template #default="{ row }">
@@ -23,7 +23,7 @@
             <i class="btn-icon mr4 iconfont icon-xiugai"></i> <span>编辑</span>
           </el-button>
           <el-popconfirm
-            @confirm="handleDelete(row.code)"
+            @confirm="handleDelete(row.id)"
             confirm-button-text="确认"
             cancel-button-text="否"
             title="确认删除该部门?"
@@ -55,8 +55,8 @@ async function onSearch() {
   tableData.value = data
 }
 
-const handleDelete = async (code: string) => {
-  console.log(code)
+const handleDelete = async (id: number) => {
+  console.log(id)
   // const res = await deleteMenu(id)
   // if (res.code !== 200) {
   //   ElMessage.error(res.msg)

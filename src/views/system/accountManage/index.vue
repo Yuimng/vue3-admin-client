@@ -37,9 +37,9 @@
           <el-table-column prop="id" label="Id" width="50" />
           <el-table-column prop="username" label="用户名" width="150" />
           <el-table-column prop="name" label="昵称" width="150" />
-          <el-table-column prop="deptCode" label="部门" width="150">
+          <el-table-column prop="deptId" label="部门" width="150">
             <template #default="{ row }">
-              {{ formatCode(row.deptCode) }}
+              {{ formatDeptName(row.deptId) }}
             </template>
           </el-table-column>
           <el-table-column prop="email" label="邮箱" width="180" />
@@ -92,7 +92,7 @@ import { ElMessage, FormInstance, ElTree } from 'element-plus'
 import { deleteUser, getDepartmentsAll, getUserList } from '@/api/modules/system'
 import { User } from '@/api/interface/system'
 import { Department } from '@/api/interface/system'
-import { findNodeByCode } from '@/utils'
+import { findNodeById } from '@/utils'
 
 const filterText = ref('')
 const treeRef = ref<InstanceType<typeof ElTree>>()
@@ -123,16 +123,16 @@ const initTreeData = async () => {
 }
 
 // 部门筛选 默认100
-const selectDeptCode = ref('100')
+const selectDeptId = ref<number>(1)
 
 const handleNodeClick = (data: Department) => {
-  selectDeptCode.value = data.code
+  selectDeptId.value = data.id
   onSearch()
 }
 
 // 表格显示部门名称
-const formatCode = (code: string) => {
-  const obj = findNodeByCode(treeData.value!, code)
+const formatDeptName = (id: number) => {
+  const obj = findNodeById(treeData.value!, id)
   return obj?.name
 }
 
@@ -159,7 +159,7 @@ async function onSearch() {
     username: searchForm.username,
     pageNo: pagination.currentPage,
     pageSize: pagination.pageSize,
-    deptCode: selectDeptCode.value
+    deptId: selectDeptId.value
   }
   const { data } = await getUserList(searchParam)
   tableData.value = data.rows

@@ -2,7 +2,7 @@ export interface User {
   id: number
   name: string
   username: string | null
-  deptCode: string
+  deptId: number
   email: string | null
   phone: string | null
   avatar: string | null
@@ -51,9 +51,9 @@ export interface ResultTable<T = any> {
 }
 
 export interface Department {
+  id: number
+  parentId: number
   name: string
-  code: string
-  parentCode: string
   sort: number
   isEnable: number
   createdAt: string

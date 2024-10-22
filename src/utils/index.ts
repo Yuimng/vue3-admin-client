@@ -82,13 +82,13 @@ export function getTreeMenu(menuList: Menu[]): MenuTree[] {
   })
 }
 
-export function findNodeByCode(tree: Department[], code: string): Department | undefined {
+export function findNodeById(tree: Department[], id: number): Department | undefined {
   for (const node of tree) {
-    if (node.code === code) {
+    if (node.id === id) {
       return node
     }
     if (node.children && node.children.length > 0) {
-      const foundNode = findNodeByCode(node.children, code)
+      const foundNode = findNodeById(node.children, id)
       if (foundNode) {
         return foundNode
       }

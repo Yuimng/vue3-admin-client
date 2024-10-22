@@ -20,14 +20,14 @@
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="部门" prop="deptCode">
+            <el-form-item label="部门" prop="deptId">
               <el-tree-select
-                v-model="userForm.deptCode"
+                v-model="userForm.deptId"
                 :data="treeData"
                 check-strictly
                 :render-after-expand="false"
                 style="width: 240px"
-                node-key="code"
+                node-key="id"
                 :props="{ label: 'name' }"
               />
             </el-form-item>
@@ -112,14 +112,14 @@
             </el-form-item>
           </el-col>
           <el-col :span="12">
-            <el-form-item label="部门" prop="deptCode">
+            <el-form-item label="部门" prop="deptId">
               <el-tree-select
-                v-model="editUserForm.deptCode"
+                v-model="editUserForm.deptId"
                 :data="treeData"
                 check-strictly
                 :render-after-expand="false"
                 style="width: 240px"
-                node-key="code"
+                node-key="id"
                 :props="{ label: 'name' }"
               />
             </el-form-item>
@@ -192,7 +192,7 @@ const userForm = reactive({
   username: '',
   password: '',
   name: '',
-  deptCode: '100', // 默认部门顶级
+  deptId: 1, // 默认部门顶级
   roleId: 2, // 默认普通用户
   phone: '',
   email: '',
@@ -227,7 +227,7 @@ const editUserForm = reactive({
   id: 0,
   username: '',
   name: '',
-  deptCode: '100', // 默认部门顶级
+  deptId: 1, // 默认部门顶级
   roleId: 2, // 默认普通用户
   phone: '',
   email: '',
@@ -290,7 +290,7 @@ const handleEdit = (row: User) => {
   editUserForm.id = row.id
   editUserForm.username = row.username as string // 非空
   editUserForm.name = row.name
-  editUserForm.deptCode = row.deptCode
+  editUserForm.deptId = row.deptId
   editUserForm.roleId = row.roleId
   editUserForm.phone = row.phone || ''
   editUserForm.email = row.email || ''

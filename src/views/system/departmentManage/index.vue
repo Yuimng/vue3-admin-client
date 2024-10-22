@@ -1,5 +1,10 @@
 <template>
   <div class="card department-manage">
+    <div class="table-btns mb18">
+      <el-button type="primary" class="table-button" @click="handleNew">
+        <i class="btn-icon mr4 iconfont icon-quanjia" /><span>新增部门</span>
+      </el-button>
+    </div>
     <el-table
       default-expand-all
       class="table-content"
@@ -10,12 +15,12 @@
       <el-table-column prop="name" label="部门名称" show-overflow-tooltip />
       <el-table-column prop="id" label="部门ID" show-overflow-tooltip />
       <el-table-column prop="sort" label="顺序" />
-      <el-table-column prop="isEnable" label="是否启用">
+      <!-- <el-table-column prop="isEnable" label="是否启用">
         <template #default="{ row }">
           <el-tag type="success" v-if="row.isEnable">开启</el-tag>
           <el-tag type="danger" v-else>关闭</el-tag>
         </template>
-      </el-table-column>
+      </el-table-column> -->
 
       <el-table-column fixed="right" prop="operation" label="操作" width="160" align="center">
         <template #default="{ row }">
@@ -37,13 +42,17 @@
         </template>
       </el-table-column>
     </el-table>
+    <DepartmentDialog ref="deptDialogRef" @refresh="onSearch" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { Department } from '@/api/interface/system'
-import { getDepartmentsAll } from '@/api/modules/system'
 import { ref, onMounted } from 'vue'
+import { ElMessage } from 'element-plus'
+import { Department } from '@/api/interface/system'
+import { deleteDept, getDepartmentsAll } from '@/api/modules/system'
+
+import DepartmentDialog from './components/departmentDialog.vue'
 onMounted(() => {
   onSearch()
 })
@@ -56,23 +65,21 @@ async function onSearch() {
 }
 
 const handleDelete = async (id: number) => {
-  console.log(id)
-  // const res = await deleteMenu(id)
-  // if (res.code !== 200) {
-  //   ElMessage.error(res.msg)
-  // } else {
-  //   onSearch()
-  //   ElMessage.success(res.msg)
-  // }
+  const res = await deleteDept(id)
+  if (res.code !== 200) {
+    ElMessage.error(res.msg)
+  } else {
+    onSearch()
+    ElMessage.success(res.msg)
+  }
 }
 
-// const menuDialogRef = ref<InstanceType<typeof MenuDialog>>()
-// const handleNew = () => {
-//   menuDialogRef.value?.handleNew()
-// }
+const deptDialogRef = ref<InstanceType<typeof DepartmentDialog>>()
+const handleNew = () => {
+  deptDialogRef.value?.handleNew()
+}
 const handleEdit = (row: Department) => {
-  // menuDialogRef.value?.handleEdit(row)
-  console.log(row)
+  deptDialogRef.value?.handleEdit(row)
 }
 </script>
 

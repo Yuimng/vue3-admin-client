@@ -63,3 +63,15 @@ export const editMenu = (data: object) => {
 export const getDepartmentsAll = () => {
   return http.post<Department[]>('/department/listAll')
 }
+
+export const deleteDept = (id: number) => {
+  return http.post('/department/delete', { id })
+}
+
+export const addDept = (data: object) => {
+  return http.post('/department/add', { ...data })
+}
+
+export const editDept = (data: object) => {
+  return http.post('/department/update', { ...data })
+}

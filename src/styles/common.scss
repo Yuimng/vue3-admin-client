@@ -38,6 +38,7 @@
   overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
 }
 
 /* 文字多了自动換行 */
@@ -59,6 +60,7 @@
 }
 
 .fade-transform-leave-to {
+  display: none; // 解决标签全部关闭时出现动画闪烁问题
   opacity: 0;
   transition: all 0.2s;
   transform: translateX(30px);

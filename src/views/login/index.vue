@@ -1,6 +1,7 @@
 <template>
   <div class="login-container flx-center">
     <div class="login-box">
+      <SwitchDark class="switch-dark" />
       <div class="login-left">
         <img class="login-left-img" src="@/assets/images/login-left.svg" alt="login" />
       </div>
@@ -23,6 +24,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import SwitchDark from '@/components/SwitchDark/index.vue'
 import LoginForm from './components/LoginForm.vue'
 const loginRef = ref<InstanceType<typeof LoginForm>>()
 

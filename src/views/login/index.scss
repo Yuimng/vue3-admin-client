@@ -46,7 +46,11 @@
         margin-bottom: 32px;
 
         .login-icon {
+          position: relative;
+          left: -20000px; /* 移动到窗口外很远的地方，也可以用transform: translateY(-20000px); */
           width: 60px;
+          height: 60px;
+          filter: drop-shadow(var(--el-color-primary) 20000px 0);
         }
 
         .logo-text {

@@ -3,7 +3,7 @@
     <el-aside>
       <div class="aside" :style="{ width: isCollapse ? '65px' : '210px' }">
         <div class="logo">
-          <img class="logo-img" src="@/assets/images/logo.png" alt="logo" />
+          <img class="logo-img" src="@/assets/images/logo.svg" alt="logo" />
           <span v-show="!isCollapse" class="logo-text">YM-Admin</span>
         </div>
         <el-scrollbar>

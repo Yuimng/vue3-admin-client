@@ -7,7 +7,7 @@
       </div>
       <div class="login-form">
         <div class="login-logo">
-          <img class="login-icon" src="@/assets/images/logo.png" alt="logo" />
+          <img class="login-icon" src="@/assets/images/logo.svg" alt="logo" />
           <h2 class="logo-text">YM-Admin</h2>
         </div>
         <LoginForm ref="loginRef"></LoginForm>

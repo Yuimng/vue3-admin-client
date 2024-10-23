@@ -51,7 +51,7 @@ export const useTabsStore = defineStore({
       }
       // keepAlive
       const keepAliveList = this.tabsMenuList.filter((item) => item.isKeepAlive)
-      keepAliveStore.keepAliveNames = keepAliveList.map((item) => item.path)
+      keepAliveStore.setKeepAliveNames(keepAliveList.map((item) => item.path))
     },
     // 关闭多个tab
     async closeMultipleTab(tabPath?: string) {
@@ -60,7 +60,7 @@ export const useTabsStore = defineStore({
       })
       // keepAlive
       const keepAliveList = this.tabsMenuList.filter((item) => item.isKeepAlive)
-      keepAliveStore.keepAliveNames = keepAliveList.map((item) => item.path)
+      keepAliveStore.setKeepAliveNames(keepAliveList.map((item) => item.path))
     },
 
     async setTabs(tabsMenuList: TabsMenuProps[]) {

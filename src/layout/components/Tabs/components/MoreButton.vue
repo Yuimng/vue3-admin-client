@@ -17,10 +17,8 @@
         <el-dropdown-item @click="tabsStore.closeMultipleTab(route.fullPath)">
           <span class="flx-center"><i class="iconfont icon-close-circle"></i>关闭其他</span>
         </el-dropdown-item>
-        <el-dropdown-item>
-          <span class="flx-center" @click="closeAllTab"
-            ><i class="iconfont icon-fold-closed"></i>关闭全部</span
-          >
+        <el-dropdown-item @click="closeAllTab">
+          <span class="flx-center"><i class="iconfont icon-fold-closed"></i>关闭全部</span>
         </el-dropdown-item>
       </el-dropdown-menu>
     </template>

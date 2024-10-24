@@ -66,6 +66,7 @@
   transform: translateX(30px);
 }
 
+/* 滚动条 */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -74,6 +75,22 @@
 ::-webkit-scrollbar-thumb {
   background-color: var(--el-border-color-darker);
   border-radius: 20px;
+}
+
+/* nprogress */
+#nprogress .bar {
+  background: var(--el-color-primary) !important;
+}
+
+#nprogress .spinner-icon {
+  border-top-color: var(--el-color-primary) !important;
+  border-left-color: var(--el-color-primary) !important;
+}
+
+#nprogress .peg {
+  box-shadow:
+    0 0 10px var(--el-color-primary),
+    0 0 5px var(--el-color-primary) !important;
 }
 
 /* 外边距、内边距全局样式 */

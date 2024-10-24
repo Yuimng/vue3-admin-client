@@ -3,6 +3,7 @@ import { useAuthStore } from '@/store/modules/auth'
 import { useUserStore } from '@/store/modules/user'
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import { initDynamicRouter } from './dynamicRouter'
+import NProgress from '@/utils/nprogress'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -68,6 +69,8 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   const userStore = useUserStore()
   const authStore = useAuthStore()
+  // nprogress 启动
+  NProgress.start()
 
   // 判断是访问登陆页，有 Token 就在当前页面，没有 Token 重置路由到登陆页
   if (to.path.toLocaleLowerCase() === LOGIN_URL) {
@@ -114,5 +117,20 @@ export const resetRouter = () => {
 export const isTokenValid = (time: number) => {
   return time * 1000 > Date.now()
 }
+
+/**
+ * @description 路由跳转错误
+ * */
+router.onError((error) => {
+  NProgress.done()
+  console.warn('路由错误', error.message)
+})
+
+/**
+ * @description 路由跳转结束
+ * */
+router.afterEach(() => {
+  NProgress.done()
+})
 
 export default router

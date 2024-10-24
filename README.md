@@ -10,30 +10,23 @@
 ### 1. 项目功能
 - ✅ 用户登录 - 7天免登录
 - ✅ 首页示例 - 数据卡片、折线图、饼状图
+- ✅ 主题更换 - 自定义主题色
+- ✅ 暗黑模式
 - ✅ 用户管理 - 增删改查
 - ✅ 角色管理 - 增删改查
 - ✅ 菜单管理 - 增删改查
+- ✅ 部门管理 - 增删改查
 
 ### 2. 项目截图
 
 #### 2.1 登录
- ![login](https://raw.githubusercontent.com/Yuimng/Images/main/admin_images/login.png) 
+ ![login](https://raw.githubusercontent.com/Yuimng/Images/main/admin_images/login.gif) 
 &nbsp;
 
-#### 2.2 首页
- ![dashboard](https://raw.githubusercontent.com/Yuimng/Images/main/admin_images/dashboard.png) 
+#### 2.2 主页
+ ![home](https://raw.githubusercontent.com/Yuimng/Images/main/admin_images/home.gif) 
 &nbsp;
 
-#### 2.3 用户管理
- ![account](https://raw.githubusercontent.com/Yuimng/Images/main/admin_images/account.png) 
-&nbsp;
-
-#### 2.4 角色管理
- ![role](https://raw.githubusercontent.com/Yuimng/Images/main/admin_images/role.png) 
-&nbsp;
-
-#### 2.5 菜单管理
- ![menu](https://raw.githubusercontent.com/Yuimng/Images/main/admin_images/menu.png) 
 &nbsp;
 
 ### 3. 技术栈

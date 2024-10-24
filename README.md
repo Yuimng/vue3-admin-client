@@ -20,14 +20,31 @@
 ### 2. 项目截图
 
 #### 2.1 登录
- ![login](https://raw.githubusercontent.com/Yuimng/Images/main/admin_images/login.gif) 
+ ![login](https://raw.githubusercontent.com/Yuimng/Images/main/admin_images/login.png) 
+ ![login_dark](https://raw.githubusercontent.com/Yuimng/Images/main/admin_images/login_dark.png) 
 &nbsp;
 
 #### 2.2 主页
- ![home](https://raw.githubusercontent.com/Yuimng/Images/main/admin_images/home.gif) 
+ ![home](https://raw.githubusercontent.com/Yuimng/Images/main/admin_images/home.png) 
+ ![home_dark](https://raw.githubusercontent.com/Yuimng/Images/main/admin_images/home_dark.png) 
+ ![home_pink](https://raw.githubusercontent.com/Yuimng/Images/main/admin_images/home_pink.png) 
+ ![home_pink_dark](https://raw.githubusercontent.com/Yuimng/Images/main/admin_images/home_pink_dark.png) 
 &nbsp;
 
+#### 2.3 用户管理
+ ![account](https://raw.githubusercontent.com/Yuimng/Images/main/admin_images/account.png) 
 &nbsp;
+
+#### 2.4 角色管理
+ ![role](https://raw.githubusercontent.com/Yuimng/Images/main/admin_images/role.png) 
+&nbsp;
+
+#### 2.5 菜单管理
+ ![menu](https://raw.githubusercontent.com/Yuimng/Images/main/admin_images/menu.png) 
+&nbsp;
+
+#### 2.6 部门管理
+ ![dept](https://raw.githubusercontent.com/Yuimng/Images/main/admin_images/dept.png) 
 
 ### 3. 技术栈
 Vue3 + TypeScript + Vite + Vue-router + Pinia + Axios + Element-Plus + Sass

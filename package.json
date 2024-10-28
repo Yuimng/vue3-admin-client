@@ -3,6 +3,20 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "author": {
+    "name": "Yuimng",
+    "email": "944307891@qq.com",
+    "url": "https://github.com/Yuimng"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/Yuimng/vue3-admin-client",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Yuimng/vue3-admin-client.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Yuimng/vue3-admin-client/issues"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",

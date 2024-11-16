@@ -34,6 +34,16 @@
           </el-col>
           <el-col :span="24">
             <el-form-item label="菜单权限" prop="menus">
+              <div class="tree-config">
+                <el-checkbox v-model="treeExpand" @change="handleTreeExpand(treeExpand)"
+                  >展开/折叠</el-checkbox
+                >
+                <el-checkbox v-model="checkAll" @change="handleCheckAll(checkAll)"
+                  >全选/全不选</el-checkbox
+                >
+                <el-checkbox v-model="checkStrictly">父子联动</el-checkbox>
+              </div>
+
               <div class="menu-tree">
                 <el-tree
                   ref="treeRef"
@@ -41,7 +51,7 @@
                   show-checkbox
                   node-key="id"
                   :props="defaultProps"
-                  :check-strictly="true"
+                  :check-strictly="!checkStrictly"
                 />
               </div>
             </el-form-item>
@@ -94,6 +104,15 @@
           </el-col>
           <el-col :span="24">
             <el-form-item label="菜单权限" prop="menus">
+              <div class="tree-config">
+                <el-checkbox v-model="treeExpand" @change="handleTreeExpand(treeExpand)"
+                  >展开/折叠</el-checkbox
+                >
+                <el-checkbox v-model="checkAll" @change="handleCheckAll(checkAll)"
+                  >全选/全不选</el-checkbox
+                >
+                <el-checkbox v-model="checkStrictly">父子联动</el-checkbox>
+              </div>
               <div class="menu-tree">
                 <el-tree
                   ref="editTreeRef"
@@ -101,7 +120,7 @@
                   show-checkbox
                   node-key="id"
                   :props="defaultProps"
-                  :check-strictly="true"
+                  :check-strictly="!checkStrictly"
                 />
               </div>
             </el-form-item>
@@ -173,17 +192,55 @@ const formRules = reactive({
 
 const menuOptions = ref<MenuTree[]>([])
 
+const treeExpand = ref(false)
+const checkAll = ref(false)
+const checkStrictly = ref(true)
+
+const handleTreeExpand = (value: boolean) => {
+  if (isEdit.value === false) {
+    if (treeRef.value) {
+      if (value) {
+        Object.values(treeRef.value.store.nodesMap).forEach((v: any) => v.expand())
+      } else {
+        Object.values(treeRef.value.store.nodesMap).forEach((v: any) => v.collapse())
+      }
+    }
+  } else {
+    if (editTreeRef.value) {
+      if (value) {
+        Object.values(editTreeRef.value.store.nodesMap).forEach((v: any) => v.expand())
+      } else {
+        Object.values(editTreeRef.value.store.nodesMap).forEach((v: any) => v.collapse())
+      }
+    }
+  }
+}
+
+const handleCheckAll = (value: boolean) => {
+  const menuIds = getAllMenuIds(menuOptions.value)
+  if (isEdit.value === false) {
+    treeRef.value!.setCheckedKeys(value ? menuIds : [])
+  } else {
+    editTreeRef.value!.setCheckedKeys(value ? menuIds : [])
+  }
+}
+
+const getAllMenuIds = (menuTree: MenuTree[]): number[] => {
+  const ids: number[] = []
+  menuTree.forEach((item) => {
+    ids.push(item.id)
+    if (item.children) {
+      ids.push(...getAllMenuIds(item.children))
+    }
+  })
+  return ids
+}
+
 onMounted(() => {
   initMenus()
 })
 
 const initMenus = async () => {
-  // const res = await getMenusAll()
-  // if (res.code === 200) {
-  //   menuOptions.value = getTreeMenu(res.data)
-  // } else {
-  //   ElMessage.error(res.msg)
-  // }
   const authStore = useAuthStore()
   const menuList = computed(() => authStore.authMenuList)
   menuOptions.value = getTreeMenu(menuList.value)
@@ -285,6 +342,10 @@ const handleConfirm = () => {
 
 <style scoped lang="scss">
 .menu-tree {
+  width: 100%;
+  border: 1px solid var(--el-border-color-light);
+  border-radius: 4px;
+
   .el-tree-node__content:hover {
     background-color: var(--el-tree-node-hover-bg-color);
   }
